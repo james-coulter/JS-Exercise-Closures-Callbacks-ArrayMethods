@@ -163,6 +163,7 @@ function lowerCaseStrings(strings, callback) {
    strings.forEach(function(callback){
     return lowerCase.push(callback.toLowerCase());
   });
+  return lowerCase;
 }
 
 /**
@@ -181,16 +182,14 @@ function lowerCaseStrings(strings, callback) {
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
 function isItAnApple(strings) {
-  /* code here */
-  const results = strings.map(n => checkVals.includes(n));
-  // const newArr = strings.map(function(item){
-  //   if ( item == 'apple') {
-  //     newArr.push('true')
-  //   } else {
-  //     newArr.push('false');
-  //   }
-  // });
-  // return newArr;
+  const booleanArray = strings.map(function(element){
+    if (element === 'apple'){
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return booleanArray;
 }
 
 /**
@@ -209,8 +208,12 @@ function isItAnApple(strings) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(element) {
+function removeApple(strings) {
   /* code here */
+  const newArray = strings.filter(function(element){
+    return element !== 'apple';
+  });
+  return newArray;
 }
 
 /**
