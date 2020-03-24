@@ -331,9 +331,15 @@ function tallyUpDonations(/* CODE HERE */) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ *  counter1 declares its variable within the function's scope, whereas counter 2 declares 'count' in the global scope.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter1 uses a closure because the variable is remembered and stored every time the function is called/invoked. Counter2, on the otherhand, is just calling the variable from outside of the scope of the function.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter1 would be preferable when you have a large code base and want to mitigate possible human error. Counter2 would be beneficial when you have a variable that is called upon in different functions within your code base.
  *
 */
 
@@ -375,7 +381,7 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
+function counterMakerWithLimit() {
   /* CODE HERE */
 }
 
