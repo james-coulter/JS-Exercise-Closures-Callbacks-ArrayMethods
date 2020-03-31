@@ -48,8 +48,8 @@ function processFirstItem(stringList, callback) {
  * [2] Invoking `processLength` passing `[]` and `(num) => "There are " + num`,
  * should return "There are 0".
 */
-function processLength(/* CODE HERE */) {
-  /* CODE HERE */
+function processLength(list, callback) {
+  return callback(list.length); 
 }
 
 /**
@@ -66,8 +66,8 @@ function processLength(/* CODE HERE */) {
  * Invoking `processLastItem` passing `['foo', 'bar']` and `(str) => str + str`,
  * should return 'barbar'.
 */
-function processLastItem(/* CODE HERE */) {
-  /* CODE HERE */
+function processLastItem(stringList, callback) {
+  return callback(stringList[stringList.length -1]);
 }
 
 /**
@@ -88,8 +88,9 @@ function processLastItem(/* CODE HERE */) {
  * [2] Invoking `processSum` passing `-5`, '-1', and `(num) => num + 1000`,
  * should return 994.
 */
-function processSum(/* CODE HERE */) {
+function processSum(num1, num2, callback) {
   /* CODE HERE */
+  return callback(num1 + num2);
 }
 
 /**
@@ -110,8 +111,8 @@ function processSum(/* CODE HERE */) {
  * [2] Invoking `processProduct` passing 25 and 0 and `(num) => num + 1000`,
  * should return 1000.
 */
-function processProduct(/* CODE HERE */) {
-  /* CODE HERE */
+function processProduct(num1, num2, callback) {
+  return callback(num1 * num2);
 }
 
 /**
@@ -132,8 +133,9 @@ function processProduct(/* CODE HERE */) {
  * [2] Invoking `processDuplicateFree` passing `[1,1,2,2,3]` and `(arr) => arr.length`,
  * should return 3.
 */
-function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */) {
+function processDuplicateFree(list, callback) {
   /* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS */
+  return callback(list.filter((item, index) => list.indexOf(item) === index));
 }
 
 /////////////// HIGHER-ORDER ARRAY METHODS ///////////////
@@ -155,8 +157,13 @@ function processDuplicateFree(/* CODE HERE ONLY AFTER COMPLETING ALL OTHER TASKS
  * 
  * [2] Invoking `lowerCaseStrings` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function lowerCaseStrings(/* code here */) {
+function lowerCaseStrings(strings, callback) {
   /* code here */
+   let lowerCase = [];
+   strings.forEach(function(callback){
+    return lowerCase.push(callback.toLowerCase());
+  });
+  return lowerCase;
 }
 
 /**
@@ -174,8 +181,15 @@ function lowerCaseStrings(/* code here */) {
  * 
  * [2] Invoking `isItAnApple` with `['a', 'b', 'c' ]` will return `[ false, false, false ]`.
 */
-function isItAnApple(/* code here */) {
-  /* code here */
+function isItAnApple(strings) {
+  const booleanArray = strings.map(function(element){
+    if (element === 'apple'){
+      return true;
+    } else {
+      return false;
+    }
+  });
+  return booleanArray;
 }
 
 /**
@@ -194,8 +208,12 @@ function isItAnApple(/* code here */) {
  * 
  * [2] Invoking `removeApple` with `['a', 'b', 'c' ]` will return `[ 'a', 'b', 'c' ]`.
 */
-function removeApple(/* code here */) {
+function removeApple(strings) {
   /* code here */
+  const newArray = strings.filter(function(element){
+    return element !== 'apple';
+  });
+  return newArray;
 }
 
 /**
@@ -213,8 +231,12 @@ function removeApple(/* code here */) {
  * 
  * [2] Invoking `stringSmash` with `['a', 'b', 'c' ]` will return `abc`.
 */
-function stringSmash(/* code here */) {
+function stringSmash(smash) {
   /* code here */
+  const newSmash = smash.reduce(function(previous, current, index){
+    return index == 0 ? current : `${previous}${current}`;
+  }, 0)
+  return newSmash;
 }
 
 // A local community center is holding a fund raising 5k fun run and has invited
@@ -232,8 +254,14 @@ function stringSmash(/* code here */) {
  * @returns an array with all the runners' full names in the following format: "Smith, John".
  * The full names appear in the array in the same order the runners appear in the `runners` array.
 */
-function getFullNames(/* CODE HERE */) {
+function getFullNames(runners) {
   /* CODE HERE */
+  const data = [];
+  runners.forEach(function(item){
+    data.push(`${item.last_name}, ${item.first_name}`);
+    return data;
+  })
+  return data;
 }
 
 /**
@@ -248,8 +276,12 @@ function getFullNames(/* CODE HERE */) {
  * @returns an array with all the runners' first names in ALL CAPS.
  * The first names appear in the array in the same order the runners appear in the `runners` array.
 */
-function firstNamesAllCaps(/* CODE HERE */) {
+function firstNamesAllCaps(runners) {
   /* CODE HERE */
+  const firstNames = runners.map(function(names){
+    return names.first_name.toUpperCase();
+  });
+  return firstNames;
 }
 
 /**
@@ -266,8 +298,11 @@ function firstNamesAllCaps(/* CODE HERE */) {
  * @returns an array containing only the runners that use the given `tShirtSize`.
  * The runners in the array appear in the same order they appear in the `runners` array.
 */
-function getRunnersByTShirtSize(/* CODE HERE */) {
+function getRunnersByTShirtSize(runners, tShirtSize) {
   /* CODE HERE */
+  return runners.filter(runner => {
+    return runner.shirt_size.toLowerCase() === tShirtSize.toLowerCase();
+});
 }
 
 /**
@@ -296,9 +331,15 @@ function tallyUpDonations(/* CODE HERE */) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ *  counter1 declares its variable within the function's scope, whereas counter 2 declares 'count' in the global scope.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
+ * counter1 uses a closure because the variable is remembered and stored every time the function is called/invoked. Counter2, on the otherhand, is just calling the variable from outside of the scope of the function.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ * 
+ * counter1 would be preferable when you have a large code base and want to mitigate possible human error. Counter2 would be beneficial when you have a variable that is called upon in different functions within your code base.
  *
 */
 
@@ -340,7 +381,7 @@ function counter2() {
  * counter() // should return 0
  * etc
 */
-function counterMakerWithLimit(/* CODE HERE */) {
+function counterMakerWithLimit() {
   /* CODE HERE */
 }
 
